@@ -115,6 +115,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bundler (~> 2.4, >= 2.4.13)
   html-proofer (~> 3.18)
   http_parser.rb (~> 0.6.0)
   jekyll-theme-chirpy!
