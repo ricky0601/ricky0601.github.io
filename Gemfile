@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-ruby '3.1.4'  # 루비 버전을 본인의 프로젝트에 맞게 변경하세요.
+ruby '3.2.2'  # 루비 버전을 본인의 프로젝트에 맞게 변경하세요.
 
 gem 'sass-embedded', '>= 1.62.1'
 
