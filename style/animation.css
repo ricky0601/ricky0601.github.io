@@ -1,0 +1,27 @@
+@keyframes slidein-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-35px);
+    }
+    
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes slide {
+    0% {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes text-in-02d6d287 {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+}
