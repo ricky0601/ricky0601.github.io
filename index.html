@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1DG PORTFOILO</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="hero.css">
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <div id="wrap">
+        <nav id="nav-link"  data-lenis-prevent-wheel>
+            <a href="#project-page" onclick="lenis.scrollTo('#project-page')">PROJECT •</a>
+            <a href="#contact-page" onclick="lenis.scrollTo('#contact-page')">CONTACT •</a>
+        </nav>
+        <main>
+            <article id="hero-page">
+                <h1>PORTFOLIO</h1>
+                <div class="desc">
+                    <p>
+                        반갑습니다.
+                        <br>
+                        프론트엔드 개발자 한동건입니다.
+                    </p>
+                </div>
+            </article>
+            <article id="project-page">
+                <h2>PROJECT</h2>
+                <div class="project-wrap">
+                    <figure class="img-area">
+                        <img src="./img/Flenders_img.png" alt="">
+                    </figure>
+                    <div class="txt-area">
+                        <h3>Flenders</h3>
+                        <p class="txt-dura">2023.09. ~ 2024.09.</p>
+                        <div class="stack-area">
+                            <button>React Native</button>
+                            <button>Node.js</button>
+                            <button>Gemini</button>
+                            <button>Google Cloud Platform</button>
+                        </div>
+                        <div class="desc-area">
+                            <p>
+                                <strong>React Native</strong> 를 활용한 카메라 어플입니다.
+                                <br>한국공학대학교 졸업 연구로 개발을 했고,
+                                <br><strong>'저시력자들의 오프라인 쇼핑을 보조하는
+                                <br>AI를 활용한 어플리케이션 개발'</strong>
+                                <br>이라는 주제로 개발을 하였습니다.
+                                <br>Google OpenAI인 Gemini를 사용하였고,
+                                <br>Google Cloud Platform에는 AI의 서버를 두었습니다.
+                            </p>
+                        </div>
+                        <div class="link-area">
+                            <a href="#" style="text-decoration: underline;">Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-wrap">
+                    <figure class="img-area">
+                        <img src="./img/Portfolio_img.png" alt="" style="filter: grayscale(0.7);">
+                    </figure>
+                    <div class="txt-area">
+                        <h3>PORTFOLIO</h3>
+                        <p class="txt-dura">2025.02. ~ </p>
+                        <div class="stack-area">
+                            <button>HTML</button>
+                            <button>CSS</button>
+                            <button>Lenis</button>
+                            <!-- <button>GSAP</button> -->
+                        </div>
+                        <div class="desc-area">
+                            <p>
+                                기본적으로 HTML, CSS를 활용해 제작 중에 있으며,
+                                <br><strong>SEO</strong>를 고려한 <strong>Sementic</strong> 코드와
+                                <br><strong>웹 접근성</strong>을 고려하였습니다.
+                            </p>
+                        </div>
+                        <div class="link-area">
+                            <a href="#" style="text-decoration: underline;">Github</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article id="contact-page">
+                <h2>CONTACT</h2>
+                <a href="#">MAIL : movegun0601@gmail.com</a>
+            </article>
+            <div class="scroll-indi"></div>
+        </main>
+    </div>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.32/dist/lenis.min.js"></script> 
+    <script src="lenis.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+#contact-page {
+    max-width: 1200px;
+    min-height: 100vh;
+    margin: 0 auto;
+    /* padding-top: 97px; */
+}
+
+#contact-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10vh;
+}
+
+#contact-page h2{
+    font-size: 68px;
+}
+
+#contact-page a{
+    font-size: 40px;
+    text-decoration: underline;
+}

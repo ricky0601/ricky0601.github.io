@@ -1,0 +1,25 @@
+#hero-page {
+    max-width: 1920px;
+    min-height: 100vh;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#hero-page h1, #hero-page p {
+    text-align: center;
+}
+
+#hero-page h1 {
+    font-size: 112px;
+}
+
+#hero-page .desc {
+    margin-top: 10vh;
+}
+
+#hero-page p {
+    font-size: 24px;
+}
