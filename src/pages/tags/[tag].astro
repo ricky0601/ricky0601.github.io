@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPublishedPosts } from '../../utils/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
+  return tags.map((tag) => ({
+    params: { tag },
+    props: { tag, posts: posts.filter((post) => post.data.tags.includes(tag)) },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout title={`#${tag}`} description={`${tag} 태그가 붙은 개발 기록을 모았습니다.`}>
+  <section class="page-intro page-shell">
+    <p class="eyebrow">Tag</p>
+    <h1>#{tag}</h1>
+    <p>{posts.length}개의 기록이 있습니다.</p>
+  </section>
+  <section class="section page-shell" aria-label={`${tag} 게시글`}>
+    <div class="post-list">{posts.map((post) => <PostCard post={post} />)}</div>
+  </section>
+</BaseLayout>

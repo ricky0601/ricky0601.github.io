@@ -1,0 +1,14 @@
+---
+import { AUTHOR_NAME, SITE_TITLE } from '../consts';
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>© {new Date().getFullYear()} {AUTHOR_NAME}</p>
+    <div class="footer-links">
+      <a href="/rss.xml">RSS</a>
+      <a href="https://github.com/ricky0601" rel="me noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+  <p class="footer-note">Built with Astro · {SITE_TITLE}</p>
+</footer>

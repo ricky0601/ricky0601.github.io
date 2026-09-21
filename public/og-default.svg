@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f7f6f2"/>
+  <rect x="72" y="72" width="1056" height="486" rx="24" fill="#fff" stroke="#deddd7" stroke-width="2"/>
+  <circle cx="132" cy="132" r="20" fill="#315efb"/>
+  <text x="180" y="148" fill="#17181b" font-family="Arial, sans-serif" font-size="44" font-weight="700">DONGGEON.LOG</text>
+  <text x="132" y="320" fill="#17181b" font-family="Arial, sans-serif" font-size="70" font-weight="700">문제를 이해하고,</text>
+  <text x="132" y="405" fill="#315efb" font-family="Arial, sans-serif" font-size="70" font-weight="700">해결한 과정을 기록합니다.</text>
+  <text x="132" y="492" fill="#6f716f" font-family="Arial, sans-serif" font-size="30">Frontend developer · Han Donggeon</text>
+</svg>

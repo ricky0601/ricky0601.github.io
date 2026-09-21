@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPublishedPosts } from '../../utils/posts';
+
+const posts = await getPublishedPosts();
+---
+
+<BaseLayout title="Posts" description="한동건이 기록한 개발, 프론트엔드, 트러블슈팅 글을 모았습니다.">
+  <section class="page-intro page-shell">
+    <p class="eyebrow">Writing</p>
+    <h1>Posts</h1>
+    <p>개발하면서 마주한 문제와 해결 과정, 새롭게 배운 내용을 기록합니다.</p>
+  </section>
+  <section class="section page-shell" aria-label="게시글 목록">
+    <div class="post-list">
+      {posts.map((post) => <PostCard post={post} />)}
+    </div>
+  </section>
+</BaseLayout>

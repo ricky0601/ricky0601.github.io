@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPublishedPosts } from '../utils/posts';
+
+const posts = await getPublishedPosts();
+const categoryCounts = new Map<string, number>();
+const tagCounts = new Map<string, number>();
+
+for (const post of posts) {
+  categoryCounts.set(post.data.category, (categoryCounts.get(post.data.category) ?? 0) + 1);
+  for (const tag of post.data.tags) tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+}
+---
+
+<BaseLayout title="Topics" description="DONGGEON.LOG의 카테고리와 기술 태그를 살펴보세요.">
+  <section class="page-intro page-shell">
+    <p class="eyebrow">Explore</p>
+    <h1>Topics</h1>
+    <p>관심 있는 주제를 선택해 관련된 기록을 찾아볼 수 있습니다.</p>
+  </section>
+  <div class="topic-groups page-shell">
+    <section aria-labelledby="categories-heading">
+      <h2 id="categories-heading">Categories</h2>
+      <ul class="topic-index">
+        {[...categoryCounts].map(([name, count]) => (
+          <li><a href={`/categories/${encodeURIComponent(name)}/`}><span>{name}</span><small>{count}</small></a></li>
+        ))}
+      </ul>
+    </section>
+    <section aria-labelledby="tags-heading">
+      <h2 id="tags-heading">Tags</h2>
+      <ul class="topic-index">
+        {[...tagCounts].sort((a, b) => b[1] - a[1]).map(([name, count]) => (
+          <li><a href={`/tags/${encodeURIComponent(name)}/`}><span>#{name}</span><small>{count}</small></a></li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</BaseLayout>

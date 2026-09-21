@@ -1,0 +1,44 @@
+---
+import { SITE_TITLE } from '../consts';
+
+const pathname = Astro.url.pathname;
+const links = [
+  { href: '/posts/', label: 'Posts' },
+  { href: '/topics/', label: 'Topics' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/about/', label: 'About' },
+];
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label={`${SITE_TITLE} 홈`}>{SITE_TITLE}</a>
+    <nav aria-label="주요 메뉴">
+      {links.map(({ href, label }) => (
+        <a href={href} aria-current={pathname.startsWith(href) ? 'page' : undefined}>{label}</a>
+      ))}
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="다크 모드로 전환" title="테마 전환">
+      <span class="theme-icon" aria-hidden="true">◐</span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.theme-toggle');
+
+  const updateLabel = () => {
+    if (!button) return;
+    const isDark = document.documentElement.dataset.theme === 'dark';
+    button.setAttribute('aria-label', isDark ? '라이트 모드로 전환' : '다크 모드로 전환');
+  };
+
+  button?.addEventListener('click', () => {
+    const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = nextTheme;
+    localStorage.setItem('theme', nextTheme);
+    updateLabel();
+  });
+
+  updateLabel();
+</script>

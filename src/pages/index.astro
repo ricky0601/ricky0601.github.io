@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { getPublishedPosts } from '../utils/posts';
+
+const posts = await getPublishedPosts();
+const recentPosts = posts.slice(0, 5);
+const categoryTopics = [...new Set(posts.map((post) => post.data.category))]
+  .map((name) => ({ name, href: `/categories/${encodeURIComponent(name)}/` }));
+const tagTopics = [...new Set(posts.flatMap((post) => post.data.tags))]
+  .map((name) => ({ name, href: `/tags/${encodeURIComponent(name)}/` }));
+const topics = [...categoryTopics, ...tagTopics].slice(0, 8);
+---
+
+<BaseLayout>
+  <section class="hero page-shell">
+    <p class="eyebrow">Frontend developer · Problem solver</p>
+    <h1>문제를 이해하고,<br /><span>해결한 과정을 기록합니다.</span></h1>
+    <p class="hero-description">
+      안녕하세요. 프론트엔드 개발자 한동건입니다.<br />
+      개발 중 마주한 문제와 배운 내용을 오래 남을 글로 정리합니다.
+    </p>
+    <div class="hero-actions">
+      <a class="button primary" href="/posts/">글 읽기</a>
+      <a class="button secondary" href="/about/">소개 보기</a>
+    </div>
+  </section>
+
+  <section class="section page-shell" aria-labelledby="latest-heading">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Latest</p>
+        <h2 id="latest-heading">최근 기록</h2>
+      </div>
+      <a href="/posts/">모든 글 →</a>
+    </div>
+    <div class="post-list">
+      {recentPosts.length > 0
+        ? recentPosts.map((post) => <PostCard post={post} />)
+        : <p class="empty-state">첫 번째 글을 준비하고 있습니다.</p>}
+    </div>
+  </section>
+
+  {topics.length > 0 && (
+    <section class="section topics-section page-shell" aria-labelledby="topics-heading">
+      <div>
+        <p class="eyebrow">Explore</p>
+        <h2 id="topics-heading">관심 주제</h2>
+      </div>
+      <div class="topic-links">
+        {topics.map((topic) => <a href={topic.href}>{topic.name}</a>)}
+      </div>
+    </section>
+  )}
+</BaseLayout>

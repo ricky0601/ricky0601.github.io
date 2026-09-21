@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Projects" description="프론트엔드 개발자 한동건의 프로젝트와 구현 경험을 소개합니다.">
+  <section class="page-intro page-shell">
+    <p class="eyebrow">Selected work</p>
+    <h1>Projects</h1>
+    <p>문제를 정의하고 해결하기 위해 만들었던 프로젝트를 정리합니다.</p>
+  </section>
+  <section class="project-list page-shell" aria-label="프로젝트 목록">
+    <article class="project-card">
+      <div class="project-number">01</div>
+      <div>
+        <p class="project-period">2023.09 — 2024.09</p>
+        <h2>Flenders</h2>
+        <p>저시력자의 오프라인 쇼핑을 보조하기 위해 AI를 활용한 React Native 카메라 애플리케이션입니다.</p>
+        <ul class="tag-list" aria-label="기술 스택">
+          <li>React Native</li><li>Node.js</li><li>Gemini</li><li>Google Cloud</li>
+        </ul>
+      </div>
+    </article>
+    <article class="project-card">
+      <div class="project-number">02</div>
+      <div>
+        <p class="project-period">2026 — Present</p>
+        <h2>DONGGEON.LOG</h2>
+        <p>개발 과정에서 얻은 문제 해결 경험을 축적하고 공유하기 위해 직접 설계한 Astro 기반 기술 블로그입니다.</p>
+        <ul class="tag-list" aria-label="기술 스택">
+          <li>Astro</li><li>TypeScript</li><li>Content Collections</li><li>GitHub Pages</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+</BaseLayout>
