@@ -9,8 +9,10 @@ type Props = {
   description?: string;
   canonicalUrl?: string;
   image?: string;
+  imageAlt?: string;
   type?: 'website' | 'article';
   noindex?: boolean;
+  nofollow?: boolean;
 };
 
 const {
@@ -18,16 +20,20 @@ const {
   description = SITE_DESCRIPTION,
   canonicalUrl,
   image = '/og-default.png',
+  imageAlt = `${title} 대표 이미지`,
   type = 'website',
   noindex = false,
+  nofollow = false,
 } = Astro.props;
 
 const pageTitle = title === SITE_TITLE ? `${SITE_TITLE} — 한동건의 개발 기록` : `${title} | ${SITE_TITLE}`;
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(image, Astro.site);
+const usesDefaultSocialImage = image === '/og-default.png';
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': new URL('/#website', Astro.site).toString(),
   name: SITE_TITLE,
   alternateName: '한동건의 개발 기록',
   url: Astro.site,
@@ -44,7 +50,7 @@ const websiteSchema = {
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {noindex && <meta name="robots" content={`noindex, ${nofollow ? 'nofollow' : 'follow'}`} />}
     <link rel="canonical" href={canonical} />
     <link rel="alternate" type="application/rss+xml" title={`${SITE_TITLE} RSS`} href="/rss.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -58,10 +64,15 @@ const websiteSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
+    {usesDefaultSocialImage && <meta property="og:image:width" content="1200" />}
+    {usesDefaultSocialImage && <meta property="og:image:height" content="630" />}
+    <meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <slot name="head" />
 
     <title>{pageTitle}</title>
     <script is:inline>
