@@ -4,6 +4,13 @@ import PostCard from '../../components/PostCard.astro';
 import { getPublishedPosts } from '../../utils/posts';
 
 const posts = await getPublishedPosts();
+const categoryCounts = new Map<string, number>();
+
+for (const post of posts) {
+  categoryCounts.set(post.data.category, (categoryCounts.get(post.data.category) ?? 0) + 1);
+}
+
+const categories = [...categoryCounts].sort(([a], [b]) => a.localeCompare(b));
 ---
 
 <BaseLayout title="프론트엔드 개발 기록" description="한동건이 기록한 개발, 프론트엔드, 트러블슈팅 글을 모았습니다.">
@@ -12,9 +19,52 @@ const posts = await getPublishedPosts();
     <h1>Posts</h1>
     <p>개발하면서 마주한 문제와 해결 과정, 새롭게 배운 내용을 기록합니다.</p>
   </section>
-  <section class="section page-shell" aria-label="게시글 목록">
-    <div class="post-list">
-      {posts.map((post) => <PostCard post={post} />)}
-    </div>
-  </section>
+  <div class="section page-shell posts-layout">
+    <nav class="category-nav" aria-labelledby="categories-heading">
+      <h2 id="categories-heading">Categories</h2>
+      <ul class="topic-index">
+        <li><a href="/posts/" aria-current="page"><span>전체</span><small>({posts.length})</small></a></li>
+        {categories.map(([name, count]) => (
+          <li><a href={`/categories/${encodeURIComponent(name)}/`}><span>{name}</span><small>({count})</small></a></li>
+        ))}
+      </ul>
+    </nav>
+    <section aria-label="게시글 목록">
+      <div class="post-list">
+        {posts.map((post) => <PostCard post={post} />)}
+      </div>
+    </section>
+  </div>
 </BaseLayout>
+
+<style>
+  .posts-layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    align-items: start;
+    gap: 48px;
+  }
+
+  .category-nav h2 {
+    padding-bottom: 16px;
+    margin: 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 1.35rem;
+  }
+
+  .category-nav a {
+    gap: 12px;
+  }
+
+  .category-nav a[aria-current='page'] {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  @media (max-width: 720px) {
+    .posts-layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 32px;
+    }
+  }
+</style>
